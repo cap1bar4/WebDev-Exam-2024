@@ -6,16 +6,16 @@
     <title>Exam_2024_Web</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
-<body class="bg-success p-2 text-dark bg-opacity-25">
-
+<body class="bg-success  text-dark bg-opacity-25">
+    
     <nav class="navbar navbar-expand-lg bg-success text-dark bg-opacity-25">
         <div class="container-fluid">
             <div class="col-lg-3 text-nowrap ms-4">
                 <img  src="image/logo.png" alt="Логотип сайта">
-                <span class="fs-4">Walking tourist route</span> 
+                <span class="fs-4 mx-3">Walking tourist route</span> 
             </div>
 
-            <div class="col-lg-3 m-0">
+            <div class="col-lg-3 me-4">
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Переключатель навигации">
                     <span class="navbar-toggler-icon"></span>
@@ -24,14 +24,177 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link active" aria-current="page" href="#">Главная</a>
-                        <a class="nav-link" href="#">Рекомендуемые</a>
+                        <a class="nav-link" href="#">Личный кабинет</a>
                     </div>
                 </div>    
             </div>
           
         </div>
+
     </nav>
 
+    <div class="alert alert-warning m-0" role="alert">
+        Простое уведомление success — проверьте!
+    </div>
+
+    <div class="conteiner">
+        <div class="row justify-content-around align-items-center">
+
+            <div class="col-lg-6 col-sm-9">
+                <img src="image/Russia_Moscow_Houses_Landscape_design_Lomonosov_609629_1280x853.jpg" alt="Храм Христа-Спасителя" class="mt-3 p-2 img-fluid">
+            </div>
+
+            <div class="col-lg-6 col-sm-12">
+                <h2 class="mt-5 mx-5 mb-3 text-success">Добро пожаловать на <underline>Walking tourist route</underline> - Вашего проводника по невероятной Москве!</h2>
+                <p class=" mx-5 mb-3">
+                    В Walking tourist route, мы предлагаем незабываемые пешеходные туры по сердцу России - Москве. Наша миссия - открыть для вас 
+                    сокровенные уголки и исторические сокровища этого величественного города.
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-around align-items-center">
+            <div class="col-lg-6 col-sm-12">
+                <h2 class="mt-5 mx-5 mb-3 text-success">Почему именно пешеходный тур?</h2>
+                <p class="mx-5 mb-3">
+                    Пешеходные туры позволяют вам по-настоящему погрузиться в атмосферу Москвы. Вы сможете насладиться видами и звуками города,
+                    ощутить его пульс, исследуя узкие улочки и широкие проспекты. Мы пройдём мимо знаменитых достопримечательностей и откроем для 
+                    вас менее известные, но не менее удивительные места.
+                </p>
+            </div>
+
+            <div class="col-lg-6 col-sm-9">
+                <img src="image/Russia_Moscow_Houses_Monastery_Landscape_design_548953_1280x853.jpg" alt="Новодевичий-Монастырь" class="mt-3 p-2 img-fluid">
+            </div>
+        </div>
+
+        <div class="row justify-content-around align-items-center">
+            
+            <div class="col-lg-6 col-sm-9">
+                <img src="image/Russia_Temples_Bridges_477189.jpg" alt="" class="mt-3 p-2 img-fluid">
+            </div>
+
+            <div class="col-lg-6 col-sm-12">
+                <h2 class="mt-5 mx-5 mb-3 text-success">Наши туры</h2>
+                <p class="mx-5 mb-3">
+                    Каждый наш тур - это уникальное приключение. Вы можете выбрать классический обзорный тур, тематический тур, посвященный истории,
+                    культуре или архитектуре, а также индивидуальный тур, созданный специально для вас. Наши опытные гиды расскажут вам захватывающие 
+                    истории и откроют секреты Москвы.
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-around align-items-center">
+            
+            <div class="col-lg-6 col-sm-12 ">
+                <h2 class="mt-5 mx-5 mb-3 text-success">Готовы начать своё приключение?</h2>
+                <p class="mx-5 mb-3">
+                    Забронируйте тур 
+                    <a href="#" class="link-underline-success">прямо сейчас</a>
+                     и откройте для себя невероятную Москву вместе с Walking tourist route!
+                </p>
+            </div>
+
+            <div class="col-lg-6 col-sm-9">
+                <img src="image/Russia_Parks_Moscow_Tsaritsyno_Branches_Palace_601054_1280x850.jpg" alt="" class="mt-3 p-2 img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <div class="conteiner bg-success p-5">
+
+        <div class="row justify-content-around align-items-center">
+            <div class="col-lg-6 col-sm-12">
+                <h2 class="m-2 text-center text-light">Список пешеходных прогулок</h2>
+            </div>
+        </div>
+
+        <div class="row justify-content-around align-items-center">
+            <div class="col-5">
+                <form class="d-flex m-5" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Поиск по названию" aria-label="Поиск по названию">
+                    <button class="btn btn-outline-success" type="submit">Поиск</button>
+                </form>
+        
+            </div>
+    
+            <div class="col-5">
+                <select class="form-select" aria-label="Пример выбора по умолчанию">
+                    <option selected>Основной объект</option>
+                    <option value="1">Один</option>
+                    <option value="2">Два</option>
+                    <option value="3">Три</option>
+                  </select>
+            </div>
+        </div>
+        
+        <table class="table TableRoute table-bordered table-success table-sm p-5">
+            <thead>
+                <tr>
+                    <th class="">Название маршрута</th>
+                    <th>Краткое описание</th>
+                    <th>Основные объекты</th>
+                    <th>Выбор маршрута</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="RouteTab">
+
+            </tbody>
+        </table>
+        
+    </div>
+
+
+    <footer>
+        <div class="container">
+            <div class="row justify-content-around align-items-center">
+                <div class="col-6">
+                    <p class="mt-5 mx-5 mb-3 text-success">@2024 Walking tourist route</p>
+                </div>
+                <div class="col-6">
+                    <div class="m-2">
+                        <a class="icon-link text-success" href="https://web.telegram.org/k/">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
+                            </svg>
+                            @lesnimarie
+                          </a>
+                    </div>
+                    <div class="m-2">
+                        <a class="icon-link text-success" href="https://mail.ru">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at-fill" viewBox="0 0 16 16">
+                              <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2zm-2 9.8V4.698l5.803 3.546L0 11.801Zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 9.671V4.697l-5.803 3.546.338.208A4.482 4.482 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671"/>
+                              <path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791Z"/>
+                            </svg>
+                            polytech@mail.ru
+                          </a>
+                    </div>
+                    <div class="m-2">
+                        <a class="icon-link text-success" href="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                              <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                              <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                            </svg>
+                            +7 345 678 17 77
+                          </a>
+                    </div>
+                    
+                </div>
+                <div class="col-3">
+                    
+                </div>
+                <div class="col-3">
+                    
+                </div>
+                    
+
+            </div>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 </html>
