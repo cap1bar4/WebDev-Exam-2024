@@ -34,8 +34,10 @@
     </nav>
 
     <div class="alert alert-warning m-0" role="alert">
-        Простое уведомление success — проверьте!
+        Простое уведомление success!
     </div>
+
+    
 
     <div class="conteiner">
         <div class="row justify-content-around align-items-center">
@@ -110,15 +112,15 @@
         </div>
 
         <div class="row justify-content-around align-items-center">
-            <div class="col-5">
-                <form class="d-flex m-5" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Поиск по названию" aria-label="Поиск по названию">
-                    <button class="btn btn-outline-success" type="submit">Поиск</button>
-                </form>
+            <div class="col-lg-5 col-sm-7">
+                <div class="d-flex m-4" role="search">
+                    <input class="searchContent form-control me-2" type="text" placeholder="Поиск по названию" aria-label="Поиск по названию">
+                    <button class="btn searchBtn btn-outline-light bg-success">Поиск</button>
+                </div>
         
             </div>
     
-            <div class="col-5">
+            <div class="col-lg-5 col-sm-7 p-3">
                 <select class="form-select" aria-label="Пример выбора по умолчанию">
                     <option selected>Основной объект</option>
                     <option value="1">Один</option>
@@ -128,68 +130,193 @@
             </div>
         </div>
         
-        <table class="table TableRoute table-bordered table-success table-sm p-5">
-            <thead>
-                <tr>
-                    <th class="">Название маршрута</th>
-                    <th>Краткое описание</th>
-                    <th>Основные объекты</th>
-                    <th>Выбор маршрута</th>
-                </tr>
+        <div class="table-responsive-lg">
+            <table class="table TableRoute table-bordered table-success table-striped  p-5">
+                <thead>
+                    <tr>
+                        <th>Название маршрута</th>
+                        <th>Краткое описание</th>
+                        <th>Основные объекты</th>
+                        <th>Выбор маршрута</th>
+                    </tr>
+    
+                </thead>
+    
+                <tbody id="RouteTab">
+    
+                </tbody>
+            </table>
 
-            </thead>
-
-            <tbody id="RouteTab">
-
-            </tbody>
-        </table>
+        </div>
         
+        <div class="pagination justify-content-center mt-3">
+        
+        </div>
+
     </div>
+
+    <div class="conteiner p-5">
+
+        <div class="row justify-content-around align-items-center">
+            <div class="col-lg-6 col-sm-12">
+                <h2 class="mt-5 mb-3 text-center text-success">Доступные гиды по маршруту <span class="Marshrut"> </span></h2>
+            </div>
+        </div>
+
+        <div class="row justify-content-around align-items-center">
+
+            <div class="col-lg-5 col-sm-7 p-3">
+                <select class="form-select unicLanguage" aria-label="Пример выбора по умолчанию">
+                    <option selected>Не выбран язык</option>
+                    
+                  </select>
+            </div>
+
+            <div class=" col-lg-5 col-sm-7 p-3">
+                <div class="input-group">
+                    <span class="input-group-text">Опыт работы</span>
+                    <input type="text" aria-label="First name" placeholder="От" class="form-control">
+                    <input type="text" aria-label="Last name" placeholder="До" class="form-control">
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="table-responsive-lg table-bordered  border border-success">
+            <table class="table TableGuide table-bordered table-success table-striped">
+   
+                <thead>
+                    <tr>
+                        <th><img src="image/person.png"  class="mx-auto d-block" width="30" height="30"></th>
+                        <th>ФИО</th>
+                        <th>Языки</th>
+                        <th>Опыт работы</th>
+                        <th>Стоимост услуг в час</th>
+                        <th>Выбор маршрута</th>
+                    </tr>
+    
+                </thead>
+    
+                <tbody id="guideTab">
+    
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Оформление заявки</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <p>ФИО гида:</p>
+                        <span class = "name"> ..</span>
+                    </div>
+                    <div class="container">
+                        <p>Название маршрута:</p>
+                        <span class = "routeName"> ..</span>
+                    </div>
+                    <div class="container">
+                        <div class = "row">
+                            <div class="col-4">
+                                <p>Дата экскурси:</p>
+                                <input class="form-control form-control-sm" type="text" placeholder="дд.мм.гг" aria-label=".form-control-sm example">
+                            </div>
+                            <div class="col-4">
+                                <p>Время начала:</p>
+                                <input class="form-control form-control-sm" type="text" placeholder="Укажите время" aria-label=".form-control-sm example">
+                            </div>
+                            <div class="col-4">
+                                <p>Длительность:</p>
+                                <select class="form-select form-select-xs" aria-label=".form-select-xs example">
+                                    <option selected>часы</option>
+                                    <option value="1">1 </option>
+                                    <option value="2">2 </option>
+                                    <option value="3">3 </option>
+                                  </select>
+                            
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="container">
+                        <div class = "row">
+                            <div class="col-5">
+                                <p>Количество человек:</p>
+                                <input class="form-control form-control-sm" type="text" placeholder="Количество человек" aria-label=".form-control-sm example">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        Дополнительные опции:
+                        <div class="row m-2">
+                            <div class="col-6">
+                                <input class="form-check-input " type="checkbox" value="" id="firstCheckbox">
+                                <label class="form-check-label p-2" for="firstCheckbox">Трансфер</label>
+                            
+                                <p class="text-secondary"> Трансфер до ближайших станций метро после экскурсии. <br> Увеличивает стоимость на 25% в выходные дни и на 30% в будние.</p>
+                            </div>
+
+                            <div class="col-6">
+                                <input class="form-check-input " type="checkbox" value="" id="secondCheckbox">
+                                <label class="form-check-label p-2" for="secondCheckbox">Интерактивный <br>путеводитель</label>
+                            
+                                <p class="text-secondary"> Увеличивает стоимость в 1,5 раза.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        Итоговая стоимость: 4580р
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-success">Оформить</button>
+                </div>
+          </div>
+        </div>
+    </div>
+      
+   
+      
 
 
     <footer>
-        <div class="container">
+        <div class="container mb-1 bg-light rounded">
             <div class="row justify-content-around align-items-center">
                 <div class="col-6">
-                    <p class="mt-5 mx-5 mb-3 text-success">@2024 Walking tourist route</p>
+                    <p class="m-3 text-success text-center">@2024 Walking tourist route</p>
                 </div>
                 <div class="col-6">
-                    <div class="m-2">
-                        <a class="icon-link text-success" href="https://web.telegram.org/k/">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+                    <div class="m-2 text-center">
+                        <a class="icon-link link-underline-success text-success m-2" href="https://web.telegram.org/k/">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telegram " viewBox="0 0 16 16">
                               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
                             </svg>
-                            @lesnimarie
-                          </a>
-                    </div>
-                    <div class="m-2">
-                        <a class="icon-link text-success" href="https://mail.ru">
+                            @WalkRouteMsk
+                        </a>
+                        <a class="icon-link link-underline-success text-success m-2" href="https://mail.ru">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at-fill" viewBox="0 0 16 16">
                               <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2zm-2 9.8V4.698l5.803 3.546L0 11.801Zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 9.671V4.697l-5.803 3.546.338.208A4.482 4.482 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671"/>
                               <path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791Z"/>
                             </svg>
-                            polytech@mail.ru
-                          </a>
-                    </div>
-                    <div class="m-2">
-                        <a class="icon-link text-success" href="">
+                            WalkRouteMsk@mail.ru
+                        </a>
+                        <a class="icon-link link-underline-success text-success m-2" href="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
                               <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
                               <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
                             </svg>
-                            +7 345 678 17 77
-                          </a>
+                            +7 987 456-68-01
+                        </a>
                     </div>
-                    
                 </div>
-                <div class="col-3">
-                    
-                </div>
-                <div class="col-3">
-                    
-                </div>
-                    
-
             </div>
         </div>
     </footer>
