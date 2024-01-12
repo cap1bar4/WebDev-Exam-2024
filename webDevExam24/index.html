@@ -33,8 +33,9 @@
 
     </nav>
 
-    <div class="alert alert-warning m-0" role="alert">
-        Простое уведомление success!
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Дорогие клиенты!</strong> Желаем вам хорошего дня и запоминающихся экскурсий!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
     </div>
 
     
@@ -69,7 +70,9 @@
                 <img src="image/Russia_Moscow_Houses_Monastery_Landscape_design_548953_1280x853.jpg" alt="Новодевичий-Монастырь" class="mt-3 p-2 img-fluid">
             </div>
         </div>
+    </div>
 
+    <div class="conteiner">
         <div class="row justify-content-around align-items-center">
             
             <div class="col-lg-6 col-sm-9">
@@ -79,9 +82,9 @@
             <div class="col-lg-6 col-sm-12">
                 <h2 class="mt-5 mx-5 mb-3 text-success">Наши туры</h2>
                 <p class="mx-5 mb-3">
-                    Каждый наш тур - это уникальное приключение. Вы можете выбрать классический обзорный тур, тематический тур, посвященный истории,
-                    культуре или архитектуре, а также индивидуальный тур, созданный специально для вас. Наши опытные гиды расскажут вам захватывающие 
-                    истории и откроют секреты Москвы.
+                    Каждый наш тур - это уникальное приключение. Вы можете выбрать тематический тур, посвященный истории,
+                    культуре или архитектуре. Также можно выбрать на каком языке Вы бы хотели, чтобы наши опытные гиды рассказали Вам захватывающие 
+                    истории и открыли секреты Москвы!
                 </p>
             </div>
         </div>
@@ -92,7 +95,7 @@
                 <h2 class="mt-5 mx-5 mb-3 text-success">Готовы начать своё приключение?</h2>
                 <p class="mx-5 mb-3">
                     Забронируйте тур 
-                    <a href="#" class="link-underline-success">прямо сейчас</a>
+                    <a href="#spisok" class="link-underline-success">прямо сейчас</a>
                      и откройте для себя невероятную Москву вместе с Walking tourist route!
                 </p>
             </div>
@@ -107,7 +110,7 @@
 
         <div class="row justify-content-around align-items-center">
             <div class="col-lg-6 col-sm-12">
-                <h2 class="m-2 text-center text-light">Список пешеходных прогулок</h2>
+                <h2 class="m-2 text-center text-light" id="spisok">Список пешеходных прогулок</h2>
             </div>
         </div>
 
@@ -123,9 +126,9 @@
             <div class="col-lg-5 col-sm-7 p-3">
                 <select class="form-select" aria-label="Пример выбора по умолчанию">
                     <option selected>Основной объект</option>
-                    <option value="1">Один</option>
-                    <option value="2">Два</option>
-                    <option value="3">Три</option>
+                    <option value="1">Музей</option>
+                    <option value="2">Храм</option>
+                    <option value="3">Площадь</option>
                   </select>
             </div>
         </div>
@@ -159,7 +162,7 @@
 
         <div class="row justify-content-around align-items-center">
             <div class="col-lg-6 col-sm-12">
-                <h2 class="mt-5 mb-3 text-center text-success">Доступные гиды по маршруту <span class="Marshrut"> </span></h2>
+                <h2 class="mt-5 mb-3 text-center text-success">Доступные гиды по маршруту <span class="marshrut"> </span></h2>
             </div>
         </div>
 
@@ -167,7 +170,7 @@
 
             <div class="col-lg-5 col-sm-7 p-3">
                 <select class="form-select unicLanguage" aria-label="Пример выбора по умолчанию">
-                    <option selected>Не выбран язык</option>
+                    <option selected>Язык</option>
                     
                   </select>
             </div>
@@ -206,6 +209,13 @@
 
     </div>
 
+    <div class="d-grid gap-2 mx-5 mb-5">
+        <button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Оформить заявку 
+        </button>
+    </div>
+
+    
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
           <div class="modal-content">
@@ -215,32 +225,32 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <p>ФИО гида:</p>
-                        <span class = "name"> ..</span>
+                        <p class="m-0">ФИО гида:</p>
+                        <span class = "nameFIO fw-bolder">...</span>
                     </div>
-                    <div class="container">
-                        <p>Название маршрута:</p>
-                        <span class = "routeName"> ..</span>
+                    <div class="container"> 
+                        <p class="m-0">Название маршрута:</p> 
+                        <span class = "routeName fw-bolder">...</span>
                     </div>
-                    <div class="container">
+                    <div class="container mt-1">
                         <div class = "row">
                             <div class="col-4">
                                 <p>Дата экскурси:</p>
-                                <input class="form-control form-control-sm" type="text" placeholder="дд.мм.гг" aria-label=".form-control-sm example">
+                                <input class="form-control form-control-sm" type="date" placeholder="дд.мм.гг" aria-label=".form-control-sm example">
                             </div>
                             <div class="col-4">
                                 <p>Время начала:</p>
-                                <input class="form-control form-control-sm" type="text" placeholder="Укажите время" aria-label=".form-control-sm example">
+                                <input class="form-control form-control-sm" type="time" placeholder="Укажите время" aria-label=".form-control-sm example" >
                             </div>
+
                             <div class="col-4">
-                                <p>Длительность:</p>
-                                <select class="form-select form-select-xs" aria-label=".form-select-xs example">
-                                    <option selected>часы</option>
+                                <label for="duration" class="form-label mb-3">Длительность:</label>
+                                <select class="form-select choiceHour py-1" id="choiceHour">
+                                    <option value="1" >часы</option>
                                     <option value="1">1 </option>
                                     <option value="2">2 </option>
                                     <option value="3">3 </option>
-                                  </select>
-                            
+                                </select>
                             </div>
                         </div>
 
@@ -248,13 +258,13 @@
                     <div class="container">
                         <div class = "row">
                             <div class="col-5">
-                                <p>Количество человек:</p>
-                                <input class="form-control form-control-sm" type="text" placeholder="Количество человек" aria-label=".form-control-sm example">
+                                <p class="py-1">Количество человек:</p>
+                                <input class="form-control form-control-sm numberOfPerson p-2" type="number" placeholder=" Количество человек" aria-label=".form-control-sm example" min="0" max="20">
                             </div>
                         </div>
                     </div>
                     <div class="container">
-                        Дополнительные опции:
+                        <p class="m-0 py-1">Дополнительные опции:</p>
                         <div class="row m-2">
                             <div class="col-6">
                                 <input class="form-check-input " type="checkbox" value="" id="firstCheckbox">
@@ -264,7 +274,7 @@
                             </div>
 
                             <div class="col-6">
-                                <input class="form-check-input " type="checkbox" value="" id="secondCheckbox">
+                                <input class="form-check-input interactivMap " type="checkbox" value="" id="secondCheckbox">
                                 <label class="form-check-label p-2" for="secondCheckbox">Интерактивный <br>путеводитель</label>
                             
                                 <p class="text-secondary"> Увеличивает стоимость в 1,5 раза.</p>
@@ -272,7 +282,7 @@
                         </div>
                     </div>
                     <div class="container">
-                        Итоговая стоимость: 4580р
+                        Итоговая стоимость: <span class="totalCost"></span>
                     </div>
                 </div>
                 <div class="modal-footer">

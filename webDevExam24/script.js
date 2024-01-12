@@ -3,13 +3,25 @@ let otvetGuide, otvetRoute;
 let listWalkingRoute = new XMLHttpRequest();
 let searchBtn = document.querySelector(".searchBtn")
 let listLang = document.querySelector(".unicLanguage")
+let fioGuide = document.querySelector(".nameFIO")
+let routeNamE = document.querySelector(".routeName")
+let marshrutChoiced = document.querySelector(".marshrut")
+let totalCost = document.querySelector(".totalCost")
+let totalCostConst;
+let hourChoiceConst;
+let hourChoice = document.querySelector(".choiceHour")
+let numberOfPerson = document.querySelector(".numberOfPerson")
+let numOfPerConst;
+let interactivMap = document.querySelector(".interactivMap")
+let allowance2 = 1;
+
+console.log("well done!")
 
 function blockOfWalkingRoutes(thisPage) {
 
     const buttonRange = 9;
     let btnStart, btnEnd;
     let allButtonOnPage = Math.ceil(otvetRoute.length / 4); // 30
-    console.log(thisPage<=5,thisPage);
 
     if (thisPage <= 5) {
         btnStart = 1;
@@ -22,8 +34,8 @@ function blockOfWalkingRoutes(thisPage) {
         btnEnd = thisPage + 4;
     }
 
-    let kakoitoconteiner = document.querySelector('.pagination');
-    kakoitoconteiner.innerHTML = '';
+    let paginationContainer = document.querySelector('.pagination');
+    paginationContainer.innerHTML = '';
 
     for (let Number1 = btnStart; Number1 <= btnEnd; Number1++) {
         let button = document.createElement('button');
@@ -37,7 +49,7 @@ function blockOfWalkingRoutes(thisPage) {
             blockOfWalkingRoutes(Number1);
         });
 
-        kakoitoconteiner.appendChild(button);
+        paginationContainer.appendChild(button);
     }
 
 
@@ -70,6 +82,12 @@ function blockOfWalkingRoutes(thisPage) {
         let id_route = item.id;
         ApiRequest(`http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/routes/${id_route}/guides?api_key=35408c80-2fa6-4a20-b84f-56be313ba8b6`, 2)
        })
+
+       choiceBtn.addEventListener('click', function() {
+        routeNamE.innerHTML = item.name;
+        marshrutChoiced.innerHTML  = item.name;
+
+       })
     }
 }
 
@@ -78,8 +96,11 @@ function forBlockOfGuide() {
     let guideTable = document.querySelector(".TableGuide tbody");
     guideTable.innerHTML = '';
 
-    console.log(otvetGuide)
-    console.log(otvetGuide.length)
+    let choiceLang = document.createElement('option')
+    choiceLang.value = "Не выбрано";
+    choiceLang.text = "Не выбрано";
+    listLang.innerHTML = '';
+    listLang.appendChild(choiceLang);
 
     let unicLanguageMassive = new Set(); //уникальные языки
 
@@ -101,15 +122,18 @@ function forBlockOfGuide() {
         unicLanguageMassive.add(item.language);
         col4.innerHTML = item.workExperience;
         col5.innerHTML = item.pricePerHour;
+        
+        let choiceBtnGuid = document.createElement('button');
+        choiceBtnGuid.innerHTML = 'выбрать';
+        choiceBtnGuid.className = 'btn btn-success align';
 
-        let choiceBtnGuid = `
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Выбрать
-        </button>`;
-        col6.innerHTML = choiceBtnGuid;
+        col6.appendChild(choiceBtnGuid);
 
-        // choiceBtnGuid.addEventListener('click', function({}))
-            
+        choiceBtnGuid.addEventListener('click', function() {
+            fioGuide.innerHTML = item.name;
+            totalCostConst = item.pricePerHour;
+            theTotalCost();
+        })  
 
     });
 
@@ -121,10 +145,11 @@ function forBlockOfGuide() {
     });
 }
 
+
 searchBtn.addEventListener('click', function(){
     let searchContent = document.querySelector(".searchContent");
     let searchRoute = searchContent.value;
-    console.log(searchRoute.trim());
+
     if (searchRoute.trim().length > 0) {   // .trim() удаляет пробельные символы с начала и конца строки
         let tab = document.querySelector('.TableRoute');
         let row = tab.getElementsByTagName('tr');
@@ -143,6 +168,61 @@ searchBtn.addEventListener('click', function(){
     }
 
 });
+
+function theTotalCost() {
+
+    hourChoiceConst =  hourChoice.value;
+
+    let totalCostHelp = totalCostConst * hourChoiceConst * allowance2 + numOfPerConst;
+
+    console.log("сумма", totalCostHelp)
+
+    if (Number.isInteger(totalCostHelp)){ //проверяю на целочисленность
+        totalCost.innerHTML = totalCostHelp
+
+    } else {
+        totalCost.innerHTML = "Не достаточно данных";
+    }
+   
+}
+
+
+interactivMap.addEventListener('change', function(){
+
+    if (this.checked) {
+        allowance2 = 1.5;
+
+    }else {
+        allowance2 = 1;
+    }
+    
+    theTotalCost()
+});
+
+hourChoice.addEventListener('change', function(){
+    hourChoiceConst = parseInt(hourChoice.value); // перевод в int
+    theTotalCost();
+});
+
+numberOfPerson.addEventListener('input', function(){
+    numOfPerConst = parseInt(numberOfPerson.value);
+  
+    let valueForPriece
+    if (numOfPerConst >= 0 && numOfPerConst < 5){
+        valueForPriece = 0
+    }else if (numOfPerConst >= 5 && numOfPerConst < 10){
+        valueForPriece = 1000
+    }else if (numOfPerConst >= 10 && numOfPerConst <= 20){
+        valueForPriece = 1500
+    }else {
+        valueForPriece = 0
+    }
+    numOfPerConst = valueForPriece;
+   
+    theTotalCost();
+});
+
+let num = numberOfPerson.value;
 
 
 function ApiRequest(url, flag) {
