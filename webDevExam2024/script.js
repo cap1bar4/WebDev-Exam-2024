@@ -3,30 +3,28 @@ let otvetGuide, otvetRoute;
 let listWalkingRoute = new XMLHttpRequest();
 let routeTable = document.querySelector(".TableRoute tbody");
 let guideTable = document.querySelector(".TableGuide tbody");
-let searchBtn = document.querySelector(".searchBtn")
-let listLang = document.querySelector(".unicLanguage")
-let fioGuide = document.querySelector(".nameFIO")
-let routeNamE = document.querySelector(".routeName")
-let marshrutChoiced = document.querySelector(".marshrut")
-let totalCost = document.querySelector(".totalCost")
+let searchBtn = document.querySelector(".searchBtn");
+let listLang = document.querySelector(".unicLanguage");
+let fioGuide = document.querySelector(".nameFIO");
+let routeNamE = document.querySelector(".routeName");
+let marshrutChoiced = document.querySelector(".marshrut");
+let totalCost = document.querySelector(".totalCost");
 let pricePerHour;
 let hourChoiceConst = 1;
-let hourChoice = document.querySelector(".choiceHour")
-let numberOfPerson = document.querySelector(".numberOfPerson")
+let hourChoice = document.querySelector(".choiceHour");
+let numberOfPerson = document.querySelector(".numberOfPerson");
 let numOfPerConst = 0;
-let interactivMap = document.querySelector(".interactivMap")
+let interactivMap = document.querySelector(".interactivMap");
 let allowanceInteractiveMap = 1;
-let AlertInform = document.querySelector(".AlertInform")
-let alertButton = document.querySelector(".alertButton")
-let borderTime = document.querySelector(".borderTime")
+let AlertInform = document.querySelector(".AlertInform");
+let alertButton = document.querySelector(".alertButton");
+let borderTime = document.querySelector(".borderTime");
 let allowanceCertainHours = 0;
-let dateOfTour = document.querySelector(".dateOfTour")
-let transferOption = document.querySelector(".transferOption")
+let dateOfTour = document.querySelector(".dateOfTour");
+let transferOption = document.querySelector(".transferOption");
 let transferOptionConst = 1;
 let dateOfTourConst = 1;
-let mainObj = document.querySelector(".mainObj")
-
-
+let mainObj = document.querySelector(".mainObj");
 
 
 function blockOfWalkingRoutes(thisPage) {
@@ -39,8 +37,8 @@ function blockOfWalkingRoutes(thisPage) {
         btnStart = 1;
         btnEnd = buttonRange;
     } else if (thisPage + 4 >= allButtonOnPage) {
-        btnStart = allButtonOnPage - buttonRange + 1
-        btnEnd = allButtonOnPage
+        btnStart = allButtonOnPage - buttonRange + 1;
+        btnEnd = allButtonOnPage;
     } else {
         btnStart = thisPage - 4;
         btnEnd = thisPage + 4;
@@ -65,7 +63,7 @@ function blockOfWalkingRoutes(thisPage) {
     }
 
 
-    let start = (thisPage-1) * 4
+    let start = (thisPage - 1) * 4;
     let end = start + 4;
     routeTable.innerHTML = '';
 
@@ -74,9 +72,9 @@ function blockOfWalkingRoutes(thisPage) {
         let newOption = document.createElement('option');
         newOption.value = nameMainObject;
 
-        if (nameMainObject.length > 80){
+        if (nameMainObject.length > 80) {
             let shortName = '';
-            for (let len = 0; len <= 80; len++){
+            for (let len = 0; len <= 80; len++) {
                 shortName = shortName + nameMainObject[len]; 
             }
             shortName = shortName + "...";
@@ -87,83 +85,57 @@ function blockOfWalkingRoutes(thisPage) {
         mainObj.appendChild(newOption);
     });
 
-
     for (let numberBtn = start; numberBtn < end && numberBtn < otvetRoute.length; numberBtn++) {
 
-       let item = otvetRoute[numberBtn]
-       let row = routeTable.insertRow();
+        let item = otvetRoute[numberBtn];
+        let row = routeTable.insertRow();
 
-       let col1 = row.insertCell(0);
-       let col2 = row.insertCell(1);
-       let col3 = row.insertCell(2);
-       let col4 = row.insertCell(3);
+        let col1 = row.insertCell(0);
+        let col2 = row.insertCell(1);
+        let col3 = row.insertCell(2);
+        let col4 = row.insertCell(3);
 
-       col1.innerHTML = item.name;
-       col2.innerHTML = item.description;
-       col3.innerHTML = item.mainObject;
+        col1.innerHTML = item.name;
+        col2.innerHTML = item.description;
+        col3.innerHTML = item.mainObject;
 
-       let choiceBtn = document.createElement('button');
-       choiceBtn.innerHTML = 'выбрать';
-       choiceBtn.className = 'btn btn-success align';
+        let choiceBtn = document.createElement('button');
+        choiceBtn.innerHTML = 'выбрать';
+        choiceBtn.className = 'btn btn-success align';
 
-       col4.appendChild(choiceBtn); 
+        col4.appendChild(choiceBtn); 
 
-       choiceBtn.addEventListener('click', function() {
-        routeNamE.innerHTML = item.name;
-        marshrutChoiced.innerHTML  = item.name;
+        choiceBtn.addEventListener('click', function() {
+            routeNamE.innerHTML = item.name;
+            marshrutChoiced.innerHTML = item.name;
 
-        let id_route = item.id;
-        ApiRequest(`http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/routes/${id_route}/guides?api_key=35408c80-2fa6-4a20-b84f-56be313ba8b6`, 2)
-       })
+            let id_route = item.id;
+            ApiRequest(`http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/routes/${id_route}/guides?api_key=35408c80-2fa6-4a20-b84f-56be313ba8b6`, 2);
+        });
 
     }
 }
 
-mainObj.addEventListener('change', function(){
-    let choiceMainObject = mainObj.value;
+function theTotalCost() {
 
-    if (choiceMainObject != 'Не выбрано'){
-        routeTable.innerHTML = '';
+    hourChoiceConst = hourChoice.value;
+    // console.log("длительность",hourChoiceConst);
+    // console.log("сколько людей",numOfPerConst);
+    // console.log("время начала",allowanceCertainHours);
+    // console.log("интерактивная карта",allowanceInteractiveMap);
+    // console.log("надбавка за трансфер",transferOptionConst);
+    // console.log("надбавка за день недели", dateOfTourConst);
+   
+    //floor округляем в меньшую
+    let totalCostHelp = Math.floor((pricePerHour * hourChoiceConst * dateOfTourConst + numOfPerConst + allowanceCertainHours) * allowanceInteractiveMap * transferOptionConst);
 
-        otvetRoute.forEach(function(item){
-            if (choiceMainObject == item.mainObject){
-                let row = routeTable.insertRow();
-
-                let col1 = row.insertCell(0);
-                let col2 = row.insertCell(1);
-                let col3 = row.insertCell(2);
-                let col4 = row.insertCell(3);
-
-                col1.innerHTML = item.name;
-                col2.innerHTML = item.description;
-                col3.innerHTML = item.mainObject;
-
-                let choiceBtn = document.createElement('button');
-                choiceBtn.innerHTML = 'выбрать';
-                choiceBtn.className = 'btn btn-success align';
-
-                col4.appendChild(choiceBtn); 
-
-                choiceBtn.addEventListener('click', function() {
-                    routeNamE.innerHTML = item.name;
-                    marshrutChoiced.innerHTML  = item.name;
-
-                    let id_route = item.id;
-                    ApiRequest(`http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/routes/${id_route}/guides?api_key=35408c80-2fa6-4a20-b84f-56be313ba8b6`, 2)
-                })
-            }
-        });
-    } else {
-        blockOfWalkingRoutes(1);
-    }
-    
-});
-
+    totalCost.innerHTML = totalCostHelp;
+}
 
 function forBlockOfGuide() {
     guideTable.innerHTML = '';
 
-    let choiceLang = document.createElement('option')
+    let choiceLang = document.createElement('option');
     choiceLang.value = "Не выбрано";
     choiceLang.text = "Не выбрано";
     listLang.innerHTML = '';
@@ -201,27 +173,91 @@ function forBlockOfGuide() {
             pricePerHour = item.pricePerHour;
             totalCost.innerHTML = pricePerHour;
             theTotalCost();
-        })  
+        });
 
     });
 
-    unicLanguageMassive.forEach(function(language){
-        let choiceLang = document.createElement('option')
+    unicLanguageMassive.forEach(function(language) {
+        let choiceLang = document.createElement('option');
         choiceLang.value = language;
         choiceLang.text = language;
         listLang.appendChild(choiceLang);
     });
 }
 
-listLang.addEventListener('change', function(){
+function ApiRequest(url, flag) {
+    let listWalkingRoute = new XMLHttpRequest();
+    
+    listWalkingRoute.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            otvet = JSON.parse(this.responseText);
+            if (flag === 1) {
+                otvetRoute = otvet;
+                blockOfWalkingRoutes(1);
+            } else if (flag === 2) {
+                otvetGuide = otvet;
+                forBlockOfGuide();
+            }
+            
+        } else if (this.readyState == 4 && this.status !== 200) {
+            AlertInform.removeAttribute('hidden');
+        }
+    };
+    
+    listWalkingRoute.open('GET', url, true);
+    listWalkingRoute.send();
+}
+
+mainObj.addEventListener('change', function() {
+    let choiceMainObject = mainObj.value;
+
+    if (choiceMainObject != 'Не выбрано') {
+        routeTable.innerHTML = '';
+
+        otvetRoute.forEach(function(item) {
+            if (choiceMainObject == item.mainObject) {
+                let row = routeTable.insertRow();
+
+                let col1 = row.insertCell(0);
+                let col2 = row.insertCell(1);
+                let col3 = row.insertCell(2);
+                let col4 = row.insertCell(3);
+
+                col1.innerHTML = item.name;
+                col2.innerHTML = item.description;
+                col3.innerHTML = item.mainObject;
+
+                let choiceBtn = document.createElement('button');
+                choiceBtn.innerHTML = 'выбрать';
+                choiceBtn.className = 'btn btn-success align';
+
+                col4.appendChild(choiceBtn); 
+
+                choiceBtn.addEventListener('click', function() {
+                    routeNamE.innerHTML = item.name;
+                    marshrutChoiced.innerHTML = item.name;
+
+                    let id_route = item.id;
+                    ApiRequest(`http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/routes/${id_route}/guides?api_key=35408c80-2fa6-4a20-b84f-56be313ba8b6`, 2);
+                });
+            }
+        });
+    } else {
+        blockOfWalkingRoutes(1);
+    }
+    
+});
+
+
+listLang.addEventListener('change', function() {
     let choiceUnicLanguage = listLang.value;
 
-    if (choiceUnicLanguage != 'Не выбрано'){
+    if (choiceUnicLanguage != 'Не выбрано') {
 
         guideTable.innerHTML = '';
 
-        otvetGuide.forEach(function(item){
-            if (choiceUnicLanguage == item.language){
+        otvetGuide.forEach(function(item) {
+            if (choiceUnicLanguage == item.language) {
                 let row = guideTable.insertRow();
  
                 let col1 = row.insertCell(0);
@@ -248,7 +284,7 @@ listLang.addEventListener('change', function(){
                     pricePerHour = item.pricePerHour;
                     totalCost.innerHTML = pricePerHour;
                     theTotalCost();
-                })  
+                });
             }
         });
     } else {
@@ -257,71 +293,56 @@ listLang.addEventListener('change', function(){
 });
 
 
-function theTotalCost() {
-
-    hourChoiceConst =  hourChoice.value;
-    // console.log("длительность",hourChoiceConst);
-    // console.log("сколько людей",numOfPerConst);
-    // console.log("время начала",allowanceCertainHours);
-    // console.log("интерактивная карта",allowanceInteractiveMap);
-    // console.log("надбавка за трансфер",transferOptionConst);
-    // console.log("надбавка за день недели", dateOfTourConst);
-   
-    //floor округляем в меньшую
-    let totalCostHelp = Math.floor((pricePerHour * hourChoiceConst * dateOfTourConst + numOfPerConst + allowanceCertainHours) * allowanceInteractiveMap * transferOptionConst);
-
-    totalCost.innerHTML = totalCostHelp
-}
-
-hourChoice.addEventListener('change', function(){
+hourChoice.addEventListener('change', function() {
     hourChoiceConst = parseInt(hourChoice.value); // перевод в int
     theTotalCost();
 });
 
 function whatIsThisDay() {
 
-    if (dateOfTour.value === ''){
+    if (dateOfTour.value === '') {
         return null;
-    }
-
-    let allInfoData = new Date(dateOfTour.value); //получаю полные данные в типе дата
+    } 
+    
+    //получаю полные данные в типе дата
+    let allInfoData = new Date(dateOfTour.value); 
     let day = allInfoData.getDay();
 
     return day % 6 === 0;
 }
 
-dateOfTour.addEventListener('change', function(){
+dateOfTour.addEventListener('change', function() {
 
     transferOption.checked = false;
     transferOptionConst = 1;
 
     if (whatIsThisDay()) {
-        dateOfTourConst = 1.5
+        dateOfTourConst = 1.5;
     } else {
         dateOfTourConst = 1;
     }
-    theTotalCost()
+    theTotalCost();
 });
 
-numberOfPerson.addEventListener('input', function(){
+numberOfPerson.addEventListener('input', function() {
     numOfPerConst = parseInt(numberOfPerson.value);
   
-    let valueForPriece
-    if (numOfPerConst > 0 && numOfPerConst < 5){
-        valueForPriece = 0
-    }else if (numOfPerConst >= 5 && numOfPerConst < 10){
-        valueForPriece = 1000
-    }else if (numOfPerConst >= 10 && numOfPerConst <= 20){
-        valueForPriece = 1500
-    }else {
-        valueForPriece = 0
+    let valueForPriece;
+    if (numOfPerConst > 0 && numOfPerConst < 5) {
+        valueForPriece = 0;
+    } else if (numOfPerConst >= 5 && numOfPerConst < 10) {
+        valueForPriece = 1000;
+    } else if (numOfPerConst >= 10 && numOfPerConst <= 20) {
+        valueForPriece = 1500;
+    } else {
+        valueForPriece = 0;
     }
     numOfPerConst = valueForPriece;
    
     theTotalCost();
 });
 
-borderTime.addEventListener('change', function(){
+borderTime.addEventListener('change', function() {
 
     let valueTime = borderTime.value;
     let masTime = valueTime.split(":");
@@ -329,13 +350,14 @@ borderTime.addEventListener('change', function(){
     let minutes = parseInt(masTime[1]);
 
 
-    if (minutes % 30 != 0 || (hours >= 0 && hours < 9 ) || (hours == 23 && minutes > 0) ) {
+    if (minutes % 30 != 0 || (hours >= 0 && hours < 9) || (hours == 23 && minutes > 0)) {
+        borderTime.value = '';
+        alert("Недопустимое время. Выберите подходящее время из списка");
         allowanceCertainHours = 0;
-        totalCost.innerHTML = "Недопустимое время";
     } else if (hours >= 12 && minutes == 30 && hours <= 19) {
         allowanceCertainHours = 0;
         theTotalCost();
-    }else if (hours >= 9 && hours <= 12 ) {
+    } else if (hours >= 9 && hours <= 12) {
         allowanceCertainHours = 400;
         theTotalCost();
     } else if (hours >= 20 && hours <= 23) {
@@ -344,61 +366,38 @@ borderTime.addEventListener('change', function(){
     } 
 });
 
-transferOption.addEventListener('change', function(){
+transferOption.addEventListener('change', function() {
 
     let isWeekend = whatIsThisDay();
    
     if (transferOption.checked && isWeekend === true) {
-        transferOptionConst = 1.25
-    } else if (transferOption.checked && isWeekend === false){
-        transferOptionConst = 1.3
-    } else if (isWeekend === null){
+        transferOptionConst = 1.25;
+    } else if (transferOption.checked && isWeekend === false) {
+        transferOptionConst = 1.3;
+    } else if (isWeekend === null) {
         alert("Пожалуйста, выберите дату!");
         transferOption.checked = false;
-    }else {
+    } else {
         transferOptionConst = 1;
     }
-    theTotalCost()
+    theTotalCost();
 });
 
-interactivMap.addEventListener('change', function(){
+interactivMap.addEventListener('change', function() {
 
     if (this.checked) {
         allowanceInteractiveMap = 1.5;
 
-    }else {
+    } else {
         allowanceInteractiveMap = 1;
     }
-    theTotalCost()
+    theTotalCost();
 });
 
-function ApiRequest(url, flag) {
-    let listWalkingRoute = new XMLHttpRequest();
-    
-    listWalkingRoute.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            otvet = JSON.parse(this.responseText);
-            if (flag === 1){
-                otvetRoute = otvet;
-                blockOfWalkingRoutes(1);
-            }
-            else if (flag === 2) {
-                otvetGuide = otvet;
-                forBlockOfGuide();
-            }
-            
-        } else if (this.readyState == 4 && this.status !== 200) {
-            AlertInform.removeAttribute('hidden');
-        }
-    }
-    listWalkingRoute.open('GET', url, true);
-    listWalkingRoute.send();
-}
-
-alertButton.addEventListener('click', function(){
-    AlertInform.setAttribute('hidden','true');
+alertButton.addEventListener('click', function() {
+    AlertInform.setAttribute('hidden', 'true');
 });
 
 window.onload = function() {
     ApiRequest('http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/routes?api_key=35408c80-2fa6-4a20-b84f-56be313ba8b6', 1);
-}
+};
